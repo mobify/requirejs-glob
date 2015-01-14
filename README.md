@@ -37,14 +37,26 @@ require.config({
 })
 ``` 
 
-Add a `glob` setting to your RequireJS config, that will instruct the server-side piece where to start for the pattern matching:
+Add `glob` options to your RequireJS config if needed:
 
 ```js
 require.config({
-  glob: 'app/js/'
+  glob: {
+    path: 'app/js/',
+    middlewarePathPrefix: '/'
+  }
 })
 ```
-It should be the **full path** from the root of your project to the [baseUrl](http://requirejs.org/docs/api.html#config-baseUrl) where RequireJS looks to load your scripts from.
+
+- `path`: instruct the server-side piece where to start for the pattern
+   matching. It should be the **full path** from the root of your project to
+   the [baseUrl](http://requirejs.org/docs/api.html#config-baseUrl) where
+   RequireJS looks to load your scripts from.
+
+- `middlewarePathPrefix`: This path is prepended to the URL used to request
+   matching files from the web requirejs-glob web service. This is useful when
+   the middleware is installed at a specific path but you want to use globbing
+   from various locations.
 
 Install the [Node](http://nodejs.org/) companion with [npm](https://npmjs.org/):
 `$ npm install requirejs-glob`
